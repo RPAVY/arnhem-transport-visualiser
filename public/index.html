@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnhem-Nijmegen Transport Visualizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Arnhem-Nijmegen Public Transport</h1>
+        <p>Bus and Train Visualization</p>
+    </header>
+
+    <main>
+        <div class="layout">
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+            <div class="sidebar">
+                <div class="controls">
+                    <div class="control-group">
+                        <button id="toggle-bus" class="active">Bus</button>
+                        <button id="toggle-train">Train</button>
+                    </div>
+                    <div class="control-group bus-controls">
+                        <label for="bus-line-selector">Bus Lines: </label>
+                        <select id="bus-line-selector" multiple>
+                            <option value="all" selected>All Lines</option>
+                        </select>
+                    </div>
+                    <div class="control-group train-controls hidden">
+                        <label for="train-line-selector">Train Lines: </label>
+                        <select id="train-line-selector" multiple>
+                            <option value="all" selected>All Lines</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="time-range">Time: </label>
+                        <input type="range" id="time-range" min="0" max="48" step="0.5" value="12">
+                        <span id="time-display">12:00</span>
+                    </div>
+                    <div class="info-panel">
+                        <h2>Information</h2>
+                        <div class="bus-info">
+                            <p id="bus-count">Buses: 0</p>
+                            <p id="bus-stop-count">Bus Stops: 0</p>
+                        </div>
+                        <div class="train-info hidden">
+                            <p id="train-count">Trains: 0</p>
+                            <p id="train-stop-count">Train Stops: 0</p>
+                        </div>
+                        <div class="both-info">
+                            <p id="vehicle-count">Vehicles: 0</p>
+                            <p id="stop-count">Stops: 0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="loading">
+            <p>Loading GTFS data...</p>
+            <progress id="progress-bar" max="100" value="0"></progress>
+        </div>
+    </main>
+    <footer>
+        <p>Data: OVapi GTFS | Map Technology: Leaflet.js</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/gtfs-parser.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
